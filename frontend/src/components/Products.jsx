@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { React, useEffect, useState } from "react";
 import AxiosInstance from "./Axios";
 import "./Products.scss";
@@ -36,3 +37,38 @@ const Products = () => {
 }
 
 export default Products
+=======
+import {React, useEffect, useState } from "react";
+import axios from "axios";
+import AxiosInstance from "./Axios";
+
+const Products = () => {
+  const [product, setProduct] = useState([])
+  console.log(product)
+  const GetData = () => {
+    AxiosInstance.get("products/").then((res) => {
+      setProduct(res.data)
+    })
+  }
+useEffect(() =>{
+  GetData()
+},[])
+ return (
+  <div>
+    <h2>Products</h2>
+    <ul>
+      {product.map((p) => (
+        <li key={p.id}>
+          {p.name} - ${p.price}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+}
+
+export default Products
+
+
+>>>>>>> 371ce00d7f23e58ef8125bf5eb2c797254b06f90

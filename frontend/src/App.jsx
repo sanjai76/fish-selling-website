@@ -4,6 +4,9 @@
 import './App.css'
 import Products from "./components/Products";
 
+// import your Products component
+import Products from "./components/Products";
+
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -29,8 +32,14 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p> */}
+<<<<<<< HEAD
       <Products />
 
+=======
+
+      {/* Render Products component here */}
+      <Products />
+>>>>>>> 371ce00d7f23e58ef8125bf5eb2c797254b06f90
     </>
   )
 }
