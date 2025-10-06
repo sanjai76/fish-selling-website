@@ -12,3 +12,17 @@ class Product(models.Model):
 
     def _str_(self):
         return self.name
+    
+    
+    
+    
+from django.db import models
+
+class Offer(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    discount = models.DecimalField(max_digits=5, decimal_places=2)  # %
+    valid_till = models.DateField()
+
+    def _str_(self):
+        return self.title
