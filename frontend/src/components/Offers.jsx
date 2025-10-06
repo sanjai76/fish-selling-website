@@ -1,13 +1,13 @@
-// frontend/src/pages/Offers.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
+// import "./Offers.css"; // optional CSS for styling
 
-export default function Offers() {
+function Offers() {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://10.117.187.209:8000/api/offers/") // 👈 Sanjai’s backend IP
+      .get("http://127.0.0.1:8000/offers/") // ✅ include /api if your products also use /api/
       .then((res) => {
         console.log("Fetched offers:", res.data);
         setOffers(res.data);
@@ -16,30 +16,31 @@ export default function Offers() {
   }, []);
 
   return (
-    <div className="container mt-5">
-      <h2 className="mb-4 text-center">🔥 Special Offers 🔥</h2>
-      {offers.length === 0 ? (
-        <p className="text-center">No active offers available.</p>
-      ) : (
-        <div className="row">
+    <div className="offers-container">
+      <h2 className="text-center">🔥 Special Offers 🔥</h2>
+      {offers.length > 0 ? (
+        <div className="offers-grid">
           {offers.map((offer) => (
-            <div key={offer.id} className="col-md-4 mb-3">
-              <div className="card shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title">{offer.title}</h5>
-                  <p className="card-text">{offer.description}</p>
-                  <p className="card-text">
-                    <strong>Discount:</strong> {offer.discount}%
-                  </p>
-                  <p className="card-text text-muted">
-                    Valid till: {offer.valid_till}
-                  </p>
-                </div>
+            <div key={offer.id} className="offer-card">
+              <div className="offer-details">
+                <h3>{offer.title}</h3>
+                <p>{offer.description}</p>
+                <p>
+                  <strong>Discount:</strong> {offer.discount}%
+                </p>
+                <p className="text-muted">
+                  Valid till: {offer.valid_till}
+                </p>
               </div>
             </div>
           ))}
         </div>
+      ) : (
+        <p className="text-center">No offers available</p>
       )}
     </div>
   );
 }
+
+export default Offers;
+
