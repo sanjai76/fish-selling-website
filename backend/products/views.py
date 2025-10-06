@@ -16,3 +16,13 @@ class ProductViewSet(viewsets.ModelViewSet):
         queryset = Product.objects.all()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+    
+    
+    
+    
+from .models import Offer
+from .serializers import OfferSerializer
+
+class OfferViewSet(viewsets.ModelViewSet):
+    queryset = Offer.objects.all()
+    serializer_class = OfferSerializer
